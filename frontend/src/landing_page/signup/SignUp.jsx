@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const API_BASE = "http://localhost:3000";
-const DASHBOARD_URL = "http://localhost:5173";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL || "http://localhost:5173";
 
 function SignUp() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -60,9 +60,7 @@ function SignUp() {
             )}
 
             <div className="mb-3">
-              <label htmlFor="username" className="form-label fw-semibold">
-                Full Name
-              </label>
+              <label htmlFor="username" className="form-label fw-semibold">Full Name</label>
               <input
                 type="text"
                 className="form-control form-control-lg"
@@ -76,9 +74,7 @@ function SignUp() {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="email" className="form-label fw-semibold">
-                Email address
-              </label>
+              <label htmlFor="email" className="form-label fw-semibold">Email address</label>
               <input
                 type="email"
                 className="form-control form-control-lg"
@@ -92,9 +88,7 @@ function SignUp() {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="password" className="form-label fw-semibold">
-                Password
-              </label>
+              <label htmlFor="password" className="form-label fw-semibold">Password</label>
               <input
                 type="password"
                 className="form-control form-control-lg"
@@ -108,11 +102,7 @@ function SignUp() {
               />
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary btn-lg w-100"
-              disabled={loading}
-            >
+            <button type="submit" className="btn btn-primary btn-lg w-100" disabled={loading}>
               {loading ? (
                 <>
                   <span className="spinner-border spinner-border-sm me-2" role="status" />
@@ -134,8 +124,7 @@ function SignUp() {
 
         <p className="signup-disclaimer">
           By creating an account, you agree to our{" "}
-          <a href="#">Terms of Service</a> and{" "}
-          <a href="#">Privacy Policy</a>.
+          <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
         </p>
       </div>
     </div>

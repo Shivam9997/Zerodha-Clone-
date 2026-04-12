@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const DASHBOARD_URL = "http://localhost:5173";
+const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL || "http://localhost:5173";
 
 function Navbar() {
   return (
@@ -24,7 +24,6 @@ function Navbar() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          {/* Left nav links */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
             <li className="nav-item">
               <Link className="nav-link" to="/about">About</Link>
@@ -40,7 +39,6 @@ function Navbar() {
             </li>
           </ul>
 
-          {/* Right CTA buttons */}
           <div className="d-flex align-items-center gap-3">
             <a
               href={`${DASHBOARD_URL}/login`}

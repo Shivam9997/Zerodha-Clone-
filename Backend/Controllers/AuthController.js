@@ -6,8 +6,8 @@ const isProd = process.env.NODE_ENV === "production";
 
 const cookieOptions = {
   httpOnly: true,
-  secure: isProd,           // true on Render (HTTPS), false on localhost
-  sameSite: isProd ? "None" : "Lax", // None required for cross-origin cookies in prod
+  secure: true,           // true on Render (HTTPS), false on localhost
+  sameSite: "None",// None required for cross-origin cookies in prod
 };
 
 // SIGNUP

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const API_BASE ="http://localhost:3000";
+const API_BASE ="https://zerodha-clone-hbth.onrender.com";
 const DASHBOARD_URL ="http://localhost:5173";
 
 function SignUp() {

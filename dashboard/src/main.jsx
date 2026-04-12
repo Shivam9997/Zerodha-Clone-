@@ -21,14 +21,14 @@ createRoot(document.getElementById('root')).render(
             <Route path="/signup" element={<Signup />} />
 
             {/* Protected */}
-            <Route
+            {/* <Route
               path="/"
               element={
                 <ProtectedRoute>
                   <Home />
                 </ProtectedRoute>
               }
-            />
+            /> */}
             <Route
               path="/*"
               element={

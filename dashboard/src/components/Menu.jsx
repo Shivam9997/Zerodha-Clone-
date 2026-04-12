@@ -23,11 +23,12 @@ const Menu = () => {
     ? username.slice(0, 2).toUpperCase()
     : "U";
 
-  const handleLogout = () => {
-    removeCookie("token", { path: "/" });
-    navigate("/login");
-  };
+ const handleLogout = () => {
+  removeCookie("token", { path: "/" });
 
+  // redirect to main frontend app
+  window.location.href = "http://localhost:5174/";
+};
   return (
     <div className="menu-container">
       <img src="/logo.png" style={{ width: "50px" }} alt="Logo" />

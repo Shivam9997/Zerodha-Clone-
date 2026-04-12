@@ -1,0 +1,146 @@
+/* =====================
+   Base
+   ===================== */
+:root {
+  --brand: #387ed1;
+  --brand-dark: #2d6ab8;
+  --text: #333;
+  --muted: #6c757d;
+  --bg: #fff;
+
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* =====================
+   Utility
+   ===================== */
+code,
+.counter {
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+/* =====================
+   Support page
+   ===================== */
+#supportHero {
+  background-color: rgb(58, 149, 149);
+  color: blanchedalmond;
+}
+
+#supportHero a {
+  color: blanchedalmond;
+  font-size: 15px;
+}
+
+#supportWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 110px;
+}
+
+#supportHero input {
+  width: 100%;
+  padding: 20px 50px;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  font-size: 18px;
+}
+
+/* =====================
+   Signup Page
+   ===================== */
+.signup-page {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  padding: 40px 16px;
+}
+
+.signup-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.signup-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.signup-logo {
+  width: 110px;
+  margin-bottom: 20px;
+}
+
+.signup-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.signup-header p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.signup-disclaimer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #aaa;
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+
+.signup-disclaimer a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.signup-disclaimer a:hover {
+  text-decoration: underline;
+}
+
+/* =====================
+   Footer links
+   ===================== */
+.container ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.container ul li {
+  margin-bottom: 8px;
+}
+
+.container ul li a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.container ul li a:hover {
+  color: var(--brand);
+}

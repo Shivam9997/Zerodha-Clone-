@@ -15,7 +15,7 @@ const uri = process.env.MONGO_URL;
 // ── CORS ─────────────────────────────────────────────────────────────────────
 // In production, set ALLOWED_ORIGINS env var as a comma-separated list of URLs.
 // e.g. https://zerodha-dashboard.onrender.com,https://zerodha-frontend.onrender.com
-const defaultOrigins = ["http://localhost:5173", "http://localhost:5174"];
+const defaultOrigins = ["https://zerodha-clone-dashboard-cg4b.onrender.com", "https://zerodha-clone-1-ovwh.onrender.com"];
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(",").map((o) => o.trim())
   : defaultOrigins;

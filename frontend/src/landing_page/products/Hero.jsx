@@ -6,7 +6,7 @@ function Hero() {
       <div className="row text-center">
         <h1 className="mt-5">Technology</h1>
         <p className='text-muted mt-3'>Sleek modern intuitive trading platforms</p>
-       <p> check out our <a href="" style={{textDecoration:"none"}}>investment offerings{" "}<i class="fa-solid fa-arrow-right"></i></a></p>
+       <p> check out our <a href="" style={{textDecoration:"none"}}>investment offerings{" "}<i className="fa-solid fa-arrow-right"></i></a></p>
       </div>
     </div>
     );

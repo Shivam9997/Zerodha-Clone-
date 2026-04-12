@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const API_BASE ="https://zerodha-clone-hbth.onrender.com";
-const DASHBOARD_URL ="https://zerodha-clone-dashboard-cg4b.onrender.com";
+// const DASHBOARD_URL ="https://zerodha-clone-dashboard-cg4b.onrender.com";
 
 function SignUp() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -25,13 +25,22 @@ function SignUp() {
       });
       if (data.success) {
         setSuccess(true);
+
         setTimeout(() => {
+          // ✅ Dynamic redirect (LOCAL + RENDER)
+          const DASHBOARD_URL =
+            window.location.hostname === "localhost"
+              ? "http://localhost:5173/"
+              : "https://zerodha-clone-dashboard-cg4b.onrender.com";
+
           window.location.href = DASHBOARD_URL;
         }, 1500);
+
       } else {
         setError(data.message || "Signup failed. Please try again.");
       }
-    } catch {
+    } catch (err) {
+      console.error(err);
       setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);

@@ -15,24 +15,33 @@ const uri = process.env.MONGO_URL;
 // ── CORS ─────────────────────────────────────────────────────────────────────
 // In production, set ALLOWED_ORIGINS env var as a comma-separated list of URLs.
 // e.g. https://zerodha-dashboard.onrender.com,https://zerodha-frontend.onrender.com
-const defaultOrigins = ["https://zerodha-clone-dashboard-cg4b.onrender.com", "https://zerodha-clone-1-ovwh.onrender.com"];
+const defaultOrigins = [
+  "http://localhost:5173",   // dashboard local
+  "http://localhost:5174",   // frontend local
+  "https://zerodha-clone-dashboard-cg4b.onrender.com",
+  "https://zerodha-clone-1-ovwh.onrender.com"
+];
+
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(",").map((o) => o.trim())
   : defaultOrigins;
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // allow requests with no origin (e.g. curl, Postman, server-to-server)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
+    // allow requests without origin (Postman, mobile apps)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
     } else {
-      callback(new Error(`CORS: origin ${origin} not allowed`));
+      console.log("❌ CORS BLOCKED:", origin); // 🔥 debug line
+      return callback(new Error(`CORS: origin ${origin} not allowed`));
     }
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-};
+}
 
 app.use(cors(corsOptions));
 app.use(express.json());

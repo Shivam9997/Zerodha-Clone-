@@ -29,7 +29,7 @@ const Menu = () => {
     const redirectURL =
       window.location.hostname === "localhost"
         ? "http://localhost:5174/"
-        : "https://your-frontend-url.onrender.com";
+        : "https://zerodha-clone-1-ovwh.onrender.com";
 
     window.location.href = redirectURL;
   };

@@ -238,6 +238,142 @@ button {
   transition: background-color 0.3s;
 }
 
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .watchlist-container {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 16px;
+  }
+
+  .content {
+    margin: 0;
+    padding: 16px;
+  }
+
+  .topbar-container {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px;
+    height: auto;
+  }
+
+  .indices-container {
+    width: 100%;
+    gap: 16px;
+    justify-content: space-between;
+  }
+
+  .menu-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .menus ul {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .menu-buttons {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .watchlist-container,
+  .content {
+    padding: 12px;
+  }
+
+  .menus li {
+    margin-right: 12px;
+  }
+
+  .menu {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  .logout-btn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .data {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .data hr {
+    display: none;
+  }
+
+  .section span p,
+  .first h3,
+  .second p,
+  .watchlist-header h3 {
+    font-size: 1rem;
+  }
+
+  .watchlist-item p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-container,
+  .watchlist-header,
+  .menu-container,
+  .content,
+  .watchlist-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .indices-container,
+  .menu-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .watchlist-item {
+    padding: 12px 8px;
+  }
+
+  .stock-name,
+  .stock-price,
+  .stock-change {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .watchlist-item,
+  .logout-btn,
+  .menu {
+    width: 100%;
+  }
+
+  .watchlist-item {
+    padding: 14px 12px;
+  }
+
+  .logout-btn {
+    padding: 14px;
+  }
+}
+
 button:hover {
   opacity: 0.9;
 }

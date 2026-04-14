@@ -258,41 +258,89 @@
   color: #007bff;
 }
 
-/* Responsive design */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .form_container {
-    margin: 20px;
-    padding: 30px 25px;
-    max-width: none;
+    width: calc(100% - 32px);
+    max-width: 100%;
+    margin: 20px 16px;
+    padding: 28px 18px;
   }
 
   .form_container h2 {
     font-size: 24px;
-    margin-bottom: 25px;
   }
 
   .form_container form {
-    gap: 20px;
+    gap: 18px;
+  }
+
+  .form_container div {
+    gap: 6px;
   }
 
   .form_container input {
     padding: 14px 16px;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .form_container button {
-    padding: 15px 20px;
+    width: 100%;
+    padding: 14px 18px;
     font-size: 15px;
+  }
+
+  .form_container span {
+    font-size: 0.95rem;
+    margin-top: 16px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .form_container {
-    margin: 10px;
-    padding: 25px 20px;
+    margin: 16px 10px;
+    padding: 20px 14px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   }
 
   .form_container h2 {
     font-size: 22px;
+  }
+
+  .form_container label {
+    font-size: 13px;
+  }
+
+  .form_container input {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .form_container button {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .form_container {
+    margin: 12px 8px;
+    padding: 18px 12px;
+  }
+
+  .form_container h2 {
+    font-size: 20px;
+  }
+
+  .form_container input {
+    padding: 12px 12px;
+  }
+
+  .form_container button {
+    padding: 12px 14px;
+  }
+
+  .form_container span {
+    font-size: 0.92rem;
   }
 }

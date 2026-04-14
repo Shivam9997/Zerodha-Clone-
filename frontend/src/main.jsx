@@ -8,7 +8,7 @@ import ProductPage from "./landing_page/products/ProductPage.jsx";
 import SupportPage from "./landing_page/support/SupportPage.jsx";
 import AboutPage from "./landing_page/about/AboutPage.jsx";
 import Login from "./landing_page/login/Login.jsx";
-import Signup from "./landing_page/signup/Signup.jsx";
+import Signup from "./landing_page/signup/SignUp.jsx";
 import Navbar from "./landing_page/Navbar.jsx";
 import Footer from "./landing_page/Footer.jsx";
 import NotFound from "./landing_page/NotFound.jsx";

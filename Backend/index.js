@@ -14,12 +14,22 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const uri = process.env.MONGO_URL ;
 
+app.set('trust proxy', 1);
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",").map((url) => url.trim())
+  : [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:3000",
+    ];
+
 // ── 1. CORS & PREFLIGHT MIDDLEWARE (FIXED FOR EXPRESS 5) ──────────────────
 // Humne path "(.*)" hata diya hai kyunki wo crash kar raha tha.
 // Ye middleware saare CORS headers handle kar lega.
 app.use(
   cors({
-    origin: ["http://localhost:5174","http://localhost:5173"],
+    origin: allowedOrigins,
     credentials: true,
   })
 );

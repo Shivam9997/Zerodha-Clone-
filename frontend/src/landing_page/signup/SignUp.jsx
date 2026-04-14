@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../api";
 import { ToastContainer, toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 import "../../styles/Auth.css";
@@ -41,8 +41,8 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "http://localhost:3000/signup",
+      const { data } = await api.post(
+        "/signup",
         {
           ...inputValue,
         },

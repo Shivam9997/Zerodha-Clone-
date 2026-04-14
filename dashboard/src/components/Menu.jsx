@@ -1,10 +1,9 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 const Menu = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [, , removeCookie] = useCookies(['token']);
 
   // Guest mode
@@ -15,9 +14,7 @@ const Menu = () => {
 
   const handleLogout = () => {
     removeCookie('token');
-    const frontendUrl = window.location.hostname === "localhost" 
-      ? "http://localhost:5173/" 
-      : "https://zerodha-clone-frontend.onrender.com";
+    const frontendUrl = import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173/";
     window.location.href = frontendUrl;
   };
 

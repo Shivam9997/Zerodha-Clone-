@@ -15,9 +15,7 @@ const Menu = () => {
 
   const handleLogout = () => {
     removeCookie('token');
-    const frontendUrl = window.location.hostname === "localhost" 
-      ? "http://localhost:5173/" 
-      : "https://zerodha-clone-frontend.onrender.com";
+    const frontendUrl = import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173/";
     window.location.href = frontendUrl;
   };
 

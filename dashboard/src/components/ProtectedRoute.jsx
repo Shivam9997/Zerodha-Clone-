@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
+import api from "../api";
 
 const ProtectedRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -12,8 +12,8 @@ const ProtectedRoute = ({ children }) => {
       setLoading(true);
       try {
         console.log("🔐 Checking authentication...");
-        const response = await axios.get(
-          "http://localhost:3000/verify",
+        const response = await api.get(
+          "/verify",
           {
             withCredentials: true,
             headers: {
@@ -30,14 +30,14 @@ const ProtectedRoute = ({ children }) => {
           console.log("❌ User not authenticated, redirecting to login");
           // Redirect to login with return URL
           const currentUrl = window.location.href;
-          const loginUrl = `http://localhost:5173/login?redirect=${encodeURIComponent(currentUrl)}`;
+          const loginUrl = `${import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173"}/login?redirect=${encodeURIComponent(currentUrl)}`;
           window.location.href = loginUrl;
         }
       } catch (error) {
         console.error("❌ Auth verification failed:", error);
         // Redirect to login on any error
         const currentUrl = window.location.href;
-        const loginUrl = `http://localhost:5173/login?redirect=${encodeURIComponent(currentUrl)}`;
+        const loginUrl = `${import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173"}/login?redirect=${encodeURIComponent(currentUrl)}`;
         window.location.href = loginUrl;
       } finally {
         setLoading(false);

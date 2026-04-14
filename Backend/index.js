@@ -19,7 +19,7 @@ const uri = process.env.MONGO_URL ;
 // Ye middleware saare CORS headers handle kar lega.
 app.use(
   cors({
-    origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ["http://localhost:5174","http://localhost:5173"],
+    origin: ["http://localhost:5174","http://localhost:5173"],
     credentials: true,
   })
 );

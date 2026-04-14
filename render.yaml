@@ -11,7 +11,7 @@ services:
         value: production
       - key: MONGO_URL
         sync: false          # set manually in Render dashboard
-      - key: JWT_SECRET
+      - key: TOKEN_KEY
         sync: false          # set manually in Render dashboard
       - key: ALLOWED_ORIGINS
         sync: false          # comma-separated deployed frontend URLs
@@ -30,8 +30,6 @@ services:
     envVars:
       - key: VITE_API_URL
         sync: false          # e.g. https://zerodha-backend.onrender.com
-      - key: VITE_FRONTEND_URL
-        sync: false          # e.g. https://zerodha-frontend.onrender.com
 
   # ── 3. Frontend (Landing page) ────────────────────────────────────────────
   - type: web

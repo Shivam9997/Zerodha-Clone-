@@ -1,7 +1,9 @@
 import React from "react";
 
 const DashboardRedirect = () => {
-  const dashboardUrl = import.meta.env.VITE_DASHBOARD_URL || "http://localhost:5174/";
+  const dashboardUrl = window.location.hostname === "localhost" 
+    ? "http://localhost:5174/" 
+    : "https://zerodha-clone-dashboard-cg4b.onrender.com/";
   window.location.href = dashboardUrl;
   return <div>Redirecting to Dashboard...</div>;
 };

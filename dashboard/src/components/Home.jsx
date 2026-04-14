@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../api";
+import axios from "axios";
 import Dashboard from "../components/Dashboard";
 import TopBar from "../components/TopBar";
 
@@ -10,8 +10,8 @@ const Home = () => {
   useEffect(() => {
     const verifyAuth = async () => {
       try {
-        const response = await api.get(
-          "/verify",
+        const response = await axios.get(
+          "http://localhost:3000/verify",
           { withCredentials: true }
         );
         
@@ -19,11 +19,11 @@ const Home = () => {
           setAuthenticated(true);
           setLoading(false);
         } else {
-          window.location.href = import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173/login";
+          window.location.href = "http://localhost:5173/login";
         }
       } catch (error) {
         console.error("Auth error:", error);
-        window.location.href = import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173/login";
+        window.location.href = "http://localhost:5173/login";
       }
     };
 

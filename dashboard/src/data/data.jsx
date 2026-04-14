@@ -1,61 +1,210 @@
 export const watchlist = [
   {
-    name: "INFY",
-    price: 1555.45,
-    percent: "-1.60%",
-    isDown: true,
-  },
-  {
-    name: "ONGC",
-    price: 116.8,
-    percent: "-0.09%",
-    isDown: true,
-  },
-  {
-    name: "TCS",
-    price: 3194.8,
-    percent: "-0.25%",
-    isDown: true,
-  },
-  {
-    name: "KPITTECH",
-    price: 266.45,
-    percent: "3.54%",
+    name: "NIFTY 50",
+    price: 24367.15,
+    percent: "+1.24%",
     isDown: false,
   },
   {
-    name: "QUICKHEAL",
-    price: 308.55,
-    percent: "-0.15%",
-    isDown: true,
-  },
-  {
-    name: "WIPRO",
-    price: 577.75,
-    percent: "0.32%",
+    name: "SENSEX",
+    price: 79985.65,
+    percent: "+0.98%",
     isDown: false,
   },
   {
-    name: "M&M",
-    price: 779.8,
-    percent: "-0.01%",
-    isDown: true,
+    name: "BANKNIFTY",
+    price: 51420.30,
+    percent: "+1.85%",
+    isDown: false,
+  },
+  {
+    name: "FINNIFTY",
+    price: 23456.80,
+    percent: "+0.67%",
+    isDown: false,
   },
   {
     name: "RELIANCE",
-    price: 2112.4,
-    percent: "1.44%",
+    price: 2925.70,
+    percent: "+1.78%",
     isDown: false,
   },
   {
-    name: "HUL",
-    price: 512.4,
-    percent: "1.04%",
+    name: "TCS",
+    price: 4185.40,
+    percent: "-0.67%",
+    isDown: true,
+  },
+  {
+    name: "HDFCBANK",
+    price: 1654.80,
+    percent: "+2.34%",
     isDown: false,
+  },
+  {
+    name: "INFY",
+    price: 1842.25,
+    percent: "+0.89%",
+    isDown: false,
+  },
+  {
+    name: "HINDUNILVR",
+    price: 2689.50,
+    percent: "-1.23%",
+    isDown: true,
+  },
+  {
+    name: "ICICIBANK",
+    price: 1218.90,
+    percent: "+3.12%",
+    isDown: false,
+  },
+  {
+    name: "KOTAKBANK",
+    price: 1780.30,
+    percent: "+2.01%",
+    isDown: false,
+  },
+  {
+    name: "SBIN",
+    price: 812.60,
+    percent: "+1.45%",
+    isDown: false,
+  },
+  {
+    name: "BHARTIARTL",
+    price: 1715.45,
+    percent: "-0.78%",
+    isDown: true,
+  },
+  {
+    name: "LTIM",
+    price: 5950.80,
+    percent: "-1.56%",
+    isDown: true,
+  },
+  {
+    name: "AXISBANK",
+    price: 1156.75,
+    percent: "+1.89%",
+    isDown: false,
+  },
+  {
+    name: "ASIANPAINT",
+    price: 2845.60,
+    percent: "-0.45%",
+    isDown: true,
+  },
+  {
+    name: "MARUTI",
+    price: 12650.90,
+    percent: "-0.67%",
+    isDown: true,
+  },
+  {
+    name: "TATASTEEL",
+    price: 158.25,
+    percent: "+2.15%",
+    isDown: false,
+  },
+  {
+    name: "SUNPHARMA",
+    price: 1680.50,
+    percent: "+0.95%",
+    isDown: false,
+  },
+  {
+    name: "NTPC",
+    price: 385.20,
+    percent: "-0.78%",
+    isDown: true,
+  },
+  {
+    name: "COALINDIA",
+    price: 475.60,
+    percent: "+1.45%",
+    isDown: false,
+  },
+  {
+    name: "WIPRO",
+    price: 512.35,
+    percent: "+1.34%",
+    isDown: false,
+  },
+  {
+    name: "HCLTECH",
+    price: 1650.30,
+    percent: "-0.89%",
+    isDown: true,
+  },
+  {
+    name: "POWERGRID",
+    price: 335.40,
+    percent: "+0.56%",
+    isDown: false,
+  },
+  {
+    name: "TITAN",
+    price: 3785.20,
+    percent: "-1.12%",
+    isDown: true,
+  },
+  {
+    name: "ULTRACEMCO",
+    price: 11560.80,
+    percent: "+2.34%",
+    isDown: false,
+  },
+  {
+    name: "NESTLEIND",
+    price: 2560.50,
+    percent: "-0.45%",
+    isDown: true,
+  },
+  {
+    name: "BAJFINANCE",
+    price: 7250.30,
+    percent: "+1.78%",
+    isDown: false,
+  },
+  {
+    name: "ONGC",
+    price: 285.75,
+    percent: "-0.67%",
+    isDown: true,
+  },
+  {
+    name: "JSWSTEEL",
+    price: 910.40,
+    percent: "+1.23%",
+    isDown: false,
+  },
+  {
+    name: "ADANIPORTS",
+    price: 1405.60,
+    percent: "+0.89%",
+    isDown: false,
+  },
+  {
+    name: "TATAMOTORS",
+    price: 945.20,
+    percent: "-1.34%",
+    isDown: true,
+  },
+  {
+    name: "GRASIM",
+    price: 2805.40,
+    percent: "+1.56%",
+    isDown: false,
+  },
+  {
+    name: "TECHM",
+    price: 1570.80,
+    percent: "-0.78%",
+    isDown: true,
   },
 ];
 
-// holdings
 export const holdings = [
   {
     name: "BHARTIARTL",
@@ -168,7 +317,6 @@ export const holdings = [
   },
 ];
 
-// positions
 export const positions = [
   {
     product: "CNC",
@@ -191,3 +339,4 @@ export const positions = [
     isLoss: true,
   },
 ];
+

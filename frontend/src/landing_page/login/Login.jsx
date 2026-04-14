@@ -5,19 +5,18 @@ import { ToastContainer, toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 import "../../styles/Auth.css";
 
-const Signup = () => {
+const Login = () => {
   const navigate = useNavigate();
   const [cookies] = useCookies(['token']);
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
-    username: "",
   });
-  const { email, password, username } = inputValue;
+  const { email, password } = inputValue;
 
   useEffect(() => {
     if (cookies.token) {
-      navigate("/login");
+      navigate("/dashboard");
     }
   }, [cookies.token, navigate]);
 
@@ -42,7 +41,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/signup",
+        "http://localhost:3000/login",
         {
           ...inputValue,
         },
@@ -52,37 +51,26 @@ const Signup = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/login");
+          navigate("/dashboard");
         }, 1000);
       } else {
         handleError(message);
       }
     } catch (error) {
       console.log(error);
-      handleError("Signup failed");
+      handleError("Login failed");
     }
     setInputValue({
       ...inputValue,
       email: "",
       password: "",
-      username: "",
     });
   };
 
   return (
     <div className="form_container">
-      <h2>Create Account</h2>
+      <h2>Login Account</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            placeholder="Enter your username"
-            onChange={handleOnChange}
-          />
-        </div>
         <div>
           <label htmlFor="email">Email</label>
           <input
@@ -103,9 +91,9 @@ const Signup = () => {
             onChange={handleOnChange}
           />
         </div>
-        <button type="submit">Sign up</button>
+        <button type="submit">Login</button>
         <span>
-          Already have an account? <a href="/login">Login</a>
+          Don't have an account? <a href="/signup">Sign up</a>
         </span>
       </form>
       <ToastContainer />
@@ -113,4 +101,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

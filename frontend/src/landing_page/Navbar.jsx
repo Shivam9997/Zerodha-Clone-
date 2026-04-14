@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL || "http://localhost:5173";
-
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg border-bottom shadow-sm" style={{ backgroundColor: "#fff" }}>
@@ -11,20 +9,8 @@ function Navbar() {
           <img src="media/images/logo.svg" alt="Logo" style={{ width: "120px" }} />
         </Link>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav me-auto ms-4">
             <li className="nav-item">
               <Link className="nav-link" to="/about">About</Link>
             </li>
@@ -39,15 +25,18 @@ function Navbar() {
             </li>
           </ul>
 
-          <div className="d-flex align-items-center gap-3">
-            <a
-              href={`${DASHBOARD_URL}/login`}
-              className="btn btn-outline-secondary btn-sm px-4"
+          <div className="d-flex gap-3">
+            <Link 
+              to="/login"
+              className="btn btn-outline-primary btn-sm px-4"
             >
               Login
-            </a>
-            <Link to="/signup" className="btn btn-primary btn-sm px-4">
-              Signup
+            </Link>
+            <Link 
+              to="/signup"
+              className="btn btn-success btn-sm px-4"
+            >
+              Sign up
             </Link>
           </div>
         </div>

@@ -1,88 +1,85 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { useUser } from "../context/UserContext";
-
-const menuItems = [
-  { label: "Dashboard", path: "/" },
-  { label: "Orders", path: "/orders" },
-  { label: "Holdings", path: "/holdings" },
-  { label: "Positions", path: "/positions" },
-  { label: "Funds", path: "/funds" },
-  { label: "Apps", path: "/apps" },
-];
 
 const Menu = () => {
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [, , removeCookie] = useCookies(["token"]);
   const location = useLocation();
-  const { username } = useUser();
+  const navigate = useNavigate();
+  const [, , removeCookie] = useCookies(['token']);
 
-  const avatarInitials = username
-    ? username.slice(0, 2).toUpperCase()
-    : "U";
+  // Guest mode
 
-  // ✅ Logout Function (Local + Production Safe)
+
+  // Active menu based on route
+  const isActive = (path) => location.pathname === path;
+
   const handleLogout = () => {
-    removeCookie("token", { path: "/" });
-
-    const redirectURL =
-      window.location.hostname === "localhost"
-        ? "http://localhost:5174/"
-        : "https://zerodha-clone-1-ovwh.onrender.com";
-
-    window.location.href = redirectURL;
+    removeCookie('token');
+    const frontendUrl = window.location.hostname === "localhost" 
+      ? "http://localhost:5173/" 
+      : "https://zerodha-clone-frontend.onrender.com";
+    window.location.href = frontendUrl;
   };
 
-  // ✅ Close dropdown on outside click
-  useEffect(() => {
-    const closeDropdown = () => setIsProfileDropdownOpen(false);
-    window.addEventListener("click", closeDropdown);
-    return () => window.removeEventListener("click", closeDropdown);
-  }, []);
+  const menuClass = "menu";
+  const activeMenuClass = "menu selected";
 
   return (
     <div className="menu-container">
-      <img src="/logo.png" style={{ width: "50px" }} alt="Logo" />
+      <img src="logo.png" style={{ width: "25px" }} alt="logo" />
 
       <div className="menus">
         <ul>
-          {menuItems.map((item) => {
-            const isActive =
-              item.path === "/"
-                ? location.pathname === "/"
-                : location.pathname.startsWith(item.path);
+          <li>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <p className={isActive("/") ? activeMenuClass : menuClass}>
+                Dashboard
+              </p>
+            </Link>
+          </li>
 
-            return (
-              <li key={item.path}>
-                <Link to={item.path} style={{ textDecoration: "none" }}>
-                  <p className={isActive ? "menu selected" : "menu"}>
-                    {item.label}
-                  </p>
-                </Link>
-              </li>
-            );
-          })}
+          <li>
+            <Link to="/orders" style={{ textDecoration: "none" }}>
+              <p className={isActive("/orders") ? activeMenuClass : menuClass}>
+                Orders
+              </p>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/holdings" style={{ textDecoration: "none" }}>
+              <p className={isActive("/holdings") ? activeMenuClass : menuClass}>
+                Holdings
+              </p>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/positions" style={{ textDecoration: "none" }}>
+              <p className={isActive("/positions") ? activeMenuClass : menuClass}>
+                Positions
+              </p>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/funds" style={{ textDecoration: "none" }}>
+              <p className={isActive("/funds") ? activeMenuClass : menuClass}>
+                Funds
+              </p>
+            </Link>
+          </li>
         </ul>
 
         <hr />
 
-        {/* Profile Section */}
-        <div
-          className="profile"
-          onClick={(e) => {
-            e.stopPropagation(); // prevent closing immediately
-            setIsProfileDropdownOpen((prev) => !prev);
-          }}
-        >
-          <div className="avatar">{avatarInitials}</div>
-          <p className="username">{username || "User"}</p>
-
-          {isProfileDropdownOpen && (
-            <div className="profile-dropdown">
-              <button onClick={handleLogout}>Logout</button>
-            </div>
-          )}
+        <div className="menu-buttons">
+          <button 
+            onClick={handleLogout}
+            className="logout-btn"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>

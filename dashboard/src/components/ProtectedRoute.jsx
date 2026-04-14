@@ -1,35 +1,55 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import api from "../api";
-import { useUser } from "../context/UserContext";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const ProtectedRoute = ({ children }) => {
-  const [isAuth, setIsAuth] = useState(null);
-  const { setUsername } = useUser();
+  const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    api
-      .get("/verify")
-      .then((res) => {
-        if (res.data.status) {
-          setUsername(res.data.user);
-          setIsAuth(true);
+    const verifyAuth = async () => {
+      setLoading(true);
+      try {
+        console.log("🔐 Checking authentication...");
+        const response = await axios.get(
+          "http://localhost:3000/verify",
+          {
+            withCredentials: true,
+            headers: {
+              'Cache-Control': 'no-cache',
+              'Pragma': 'no-cache'
+            }
+          }
+        );
+
+        if (response.data.status) {
+          console.log("✅ User authenticated");
+          setAuthenticated(true);
         } else {
-          setIsAuth(false);
+          console.log("❌ User not authenticated, redirecting to login");
+          // Redirect to login with return URL
+          const currentUrl = window.location.href;
+          const loginUrl = `http://localhost:5173/login?redirect=${encodeURIComponent(currentUrl)}`;
+          window.location.href = loginUrl;
         }
-      })
-      .catch(() => setIsAuth(false));
-  }, [setUsername]);
+      } catch (error) {
+        console.error("❌ Auth verification failed:", error);
+        // Redirect to login on any error
+        const currentUrl = window.location.href;
+        const loginUrl = `http://localhost:5173/login?redirect=${encodeURIComponent(currentUrl)}`;
+        window.location.href = loginUrl;
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (isAuth === null) {
-    return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-        Loading...
-      </div>
-    );
-  }
+    verifyAuth();
+  }, [location.pathname]); // Re-check on route change
 
-  return isAuth ? children : <Navigate to="/login" replace />;
+// 
+
+  return authenticated ? children : null;
 };
 
 export default ProtectedRoute;

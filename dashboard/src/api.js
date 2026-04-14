@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL:"https://zerodha-clone-hbth.onrender.com",
-  withCredentials: true,
+  baseURL: "http://localhost:3000",
 });
+
+// No auth token needed
 
 export default api;

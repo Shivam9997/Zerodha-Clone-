@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import WatchList from './WatchList';
 import Summary from './Summary';
 import Orders from './Orders';
@@ -10,20 +10,32 @@ import { GeneralContextProvider } from './GeneralContext';
 
 
 const Dashboard = () => {
+  const location = useLocation();
+  
+  const renderContent = () => {
+    switch (location.pathname) {
+      case '/orders':
+        return <Orders />;
+      case '/holdings':
+        return <Holdings />;
+      case '/positions':
+        return <Positions />;
+      case '/funds':
+        return <Funds />;
+      case '/apps':
+        return <Apps />;
+      default:
+        return <Summary />;
+    }
+  };
+
   return (
     <div className="dashboard-container">
       <GeneralContextProvider>
         <WatchList />
 
         <div className="content">
-          <Routes>
-            <Route index element={<Summary />} />
-            <Route path="orders" element={<Orders />} />
-            <Route path="holdings" element={<Holdings />} />
-            <Route path="positions" element={<Positions />} />
-            <Route path="funds" element={<Funds />} />
-            <Route path="apps" element={<Apps />} />
-          </Routes>
+          {renderContent()}
         </div>
       </GeneralContextProvider>
     </div>

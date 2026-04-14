@@ -8,12 +8,17 @@ const Positions = () => {
 
   useEffect(() => {
     api
-      .get("/allPositions")
+      .get("/api/positions")
       .then((res) => {
-        setAllPositions(res.data);
+        // Handle response.data or res.data.data structure
+        const data = res.data?.data || res.data || [];
+        setAllPositions(Array.isArray(data) ? data : []);
         setError(null);
       })
-      .catch(() => setError("Failed to load positions."))
+      .catch((err) => {
+        console.error("Positions error:", err);
+        setError("Failed to load positions.");
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -33,27 +38,28 @@ const Positions = () => {
               <th>Qty.</th>
               <th>Avg.</th>
               <th>LTP</th>
-              <th>P&amp;L</th>
+              <th>P&L</th>
               <th>Chg.</th>
             </tr>
           </thead>
           <tbody>
             {allPositions.map((stock, index) => {
-              const curValue = stock.price * stock.qty;
-              const isProfit = curValue - stock.avg * stock.qty >= 0;
+              const curValue = (stock.price || 0) * (stock.qty || 0);
+              const pnl = curValue - (stock.avg || 0) * (stock.qty || 0);
+              const isProfit = pnl >= 0;
               const profClass = isProfit ? "profit" : "loss";
-              const dayClass = stock.isLoss ? "loss" : "profit";
+              const dayClass = (stock.day || '').startsWith('+') ? "profit" : "loss";
               return (
                 <tr key={stock._id || index}>
-                  <td>{stock.product}</td>
-                  <td>{stock.name}</td>
-                  <td>{stock.qty}</td>
-                  <td>{stock.avg.toFixed(2)}</td>
-                  <td>{stock.price.toFixed(2)}</td>
+                  <td>{stock.product || 'EQ'}</td>
+                  <td>{stock.name || stock.symbol || 'N/A'}</td>
+                  <td>{stock.qty || 0}</td>
+                  <td>{(stock.avg || 0).toFixed(2)}</td>
+                  <td>{(stock.price || 0).toFixed(2)}</td>
                   <td className={profClass}>
-                    {(curValue - stock.avg * stock.qty).toFixed(2)}
+                    {pnl.toFixed(2)}
                   </td>
-                  <td className={dayClass}>{stock.day}</td>
+                  <td className={dayClass}>{stock.day || '0%'}</td>
                 </tr>
               );
             })}

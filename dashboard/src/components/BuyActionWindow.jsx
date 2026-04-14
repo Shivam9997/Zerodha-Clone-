@@ -23,9 +23,9 @@ const BuyActionWindow = ({ uid, mode = "BUY" }) => {
     setSubmitting(true);
     setSubmitError(null);
 
-    api
-      .post("/newOrder", {
-        name: uid,
+api
+      .post("/api/orders", {
+        symbol: uid,
         qty,
         price,
         mode: mode.toUpperCase(),

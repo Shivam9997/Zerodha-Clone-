@@ -1,12 +1,34 @@
-const { Schema} = require("mongoose");
+const mongoose = require('mongoose');
 
-const HoldingsSchema = new Schema({
-    name: String,
-    qty: Number,
-    avg: Number,
-    price: Number,
-    net: String,
-    day: String,
-})
+const holdingsSchema = new mongoose.Schema({
+  // userId: removed for public mode
 
-module.exports = { HoldingsSchema }
+  symbol: {
+    type: String,
+    required: true
+  },
+  quantity: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  avgPrice: {
+    type: Number,
+    required: true
+  },
+  currentPrice: {
+    type: Number,
+    default: 0
+  },
+  pnl: {
+    type: Number,
+    default: 0
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+module.exports = holdingsSchema;
+

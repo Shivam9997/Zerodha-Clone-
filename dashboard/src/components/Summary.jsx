@@ -1,32 +1,27 @@
 import { useState, useEffect } from "react";
-import api from "../api";
-import { useUser } from "../context/UserContext";
+import { holdings } from "../data/data.jsx";
 
 const formatK = (val) => {
+  if (val === undefined || val === null) return "0.00";
   const abs = Math.abs(val);
   if (abs >= 1000) return (val / 1000).toFixed(2) + "k";
   return val.toFixed(2);
 };
 
 const Summary = () => {
-  const { username } = useUser();
-  const [holdings, setHoldings] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // ✅ FIX: useUser se nikalte waqt null check lagaya
+  const username = "Guest"; 
 
-  useEffect(() => {
-    api
-      .get("/allHoldings")
-      .then((res) => setHoldings(res.data))
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
+  const [holdingsData, setHoldingsData] = useState(holdings);
+  const [loading] = useState(false);
 
-  const totalInvestment = holdings.reduce(
-    (sum, h) => sum + h.avg * h.qty,
+  // Calculation logic
+  const totalInvestment = holdingsData.reduce(
+    (sum, h) => sum + (h.avg || 0) * (h.qty || 0),
     0
   );
-  const currentValue = holdings.reduce(
-    (sum, h) => sum + h.price * h.qty,
+  const currentValue = holdingsData.reduce(
+    (sum, h) => sum + (h.price || 0) * (h.qty || 0),
     0
   );
   const pnl = currentValue - totalInvestment;
@@ -34,12 +29,13 @@ const Summary = () => {
     totalInvestment > 0
       ? ((pnl / totalInvestment) * 100).toFixed(2)
       : "0.00";
+  
   const pnlClass = pnl >= 0 ? "profit" : "loss";
 
   return (
     <>
       <div className="username">
-        <h6>Hi, {username || "User"}!</h6>
+        <h6>Hi, {username}!</h6>
         <hr className="divider" />
       </div>
 
@@ -68,7 +64,7 @@ const Summary = () => {
 
       <div className="section">
         <span>
-          <p>Holdings ({loading ? "…" : holdings.length})</p>
+          <p>Holdings ({loading ? "…" : holdingsData.length})</p>
         </span>
 
         <div className="data">
@@ -76,8 +72,7 @@ const Summary = () => {
             <h3 className={pnlClass}>
               {loading ? "…" : formatK(pnl)}{" "}
               <small>
-                {!loading && (pnl >= 0 ? "+" : "")}
-                {loading ? "" : pnlPct + "%"}
+                {!loading && (pnl >= 0 ? "+" : "") + pnlPct + "%"}
               </small>
             </h3>
             <p>P&amp;L</p>

@@ -1,7 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const closeMenu = () => setIsOpen(false);
+
   return (
     <nav className="navbar navbar-expand-lg border-bottom shadow-sm" style={{ backgroundColor: "#fff" }}>
       <div className="container py-2">
@@ -12,27 +23,24 @@ function Navbar() {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
+          onClick={toggleMenu}
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav me-auto ms-4">
             <li className="nav-item">
-              <Link className="nav-link" to="/about">About</Link>
+              <Link className="nav-link" to="/about" onClick={closeMenu}>About</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/products">Products</Link>
+              <Link className="nav-link" to="/products" onClick={closeMenu}>Products</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/pricing">Pricing</Link>
+              <Link className="nav-link" to="/pricing" onClick={closeMenu}>Pricing</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/support">Support</Link>
+              <Link className="nav-link" to="/support" onClick={closeMenu}>Support</Link>
             </li>
           </ul>
 
@@ -40,12 +48,14 @@ function Navbar() {
             <Link 
               to="/login"
               className="btn btn-outline-primary btn-sm px-4"
+              onClick={closeMenu}
             >
               Login
             </Link>
             <Link 
               to="/signup"
               className="btn btn-success btn-sm px-4"
+              onClick={closeMenu}
             >
               Sign up
             </Link>
@@ -57,6 +67,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-  /* Add mobile menu styles if needed */
-

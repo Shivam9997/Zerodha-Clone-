@@ -720,6 +720,54 @@ hr {
 }
 
 @media (max-width: 768px) {
+  /* Mobile table scroll */
+  .order-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .order-table table {
+    min-width: 500px;
+  }
+
+  /* Mobile watchlist buttons always visible and larger */
+  .list li {
+    min-height: 60px;
+    padding: 16px;
+  }
+
+  .actions {
+    display: flex !important;
+    position: static;
+    margin-left: 12px;
+  }
+
+  .actions button {
+    width: 48px !important;
+    height: 48px !important;
+    margin-left: 4px;
+    flex-shrink: 0;
+  }
+
+  .buy, .sell {
+    font-size: 0.85rem;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-table table {
+    min-width: 450px;
+  }
+
+  .actions button {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+
+@media (max-width: 768px) {
   .order-table th,
   .order-table td {
     font-size: 0.75rem;

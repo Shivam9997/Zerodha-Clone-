@@ -1,8 +1,9 @@
 services:
   # ── 1. Backend (Express API) ──────────────────────────────────────────────
+
   - type: web
     name: zerodha-backend
-    env: node
+  
     rootDir: Backend
     buildCommand: npm install
     startCommand: node index.js
@@ -19,7 +20,7 @@ services:
   # ── 2. Dashboard (React trading app) ─────────────────────────────────────
   - type: web
     name: zerodha-dashboard
-    env: static
+
     rootDir: dashboard
     buildCommand: npm install && npm run build
     staticPublishPath: dist
@@ -36,7 +37,7 @@ services:
   # ── 3. Frontend (Landing page) ────────────────────────────────────────────
   - type: web
     name: zerodha-frontend
-    env: static
+  
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
